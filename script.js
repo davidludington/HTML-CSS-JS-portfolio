@@ -1,21 +1,17 @@
-function toggleMenu(event) {
-  if (event) event.stopPropagation();
-  const menu = document.getElementById("menuLinks") || document.querySelector(".menu-links");
+function toggleMenu() {
+  const menu = document.getElementById("menuLinks");
   const icon = document.querySelector(".hamburger-icon");
   if (menu) menu.classList.toggle("open");
   if (icon) icon.classList.toggle("open");
 }
 
-function toggleNavDropdown(event) {
-  if (event) event.stopPropagation();
-  const dropdown = document.getElementById("navDropdown");
-  if (dropdown) dropdown.classList.toggle("open");
-}
-
 document.addEventListener("click", function (event) {
-  const wrapper = document.querySelector(".nav-expand-wrapper");
-  const dropdown = document.getElementById("navDropdown");
-  if (dropdown && wrapper && !wrapper.contains(event.target)) {
-    dropdown.classList.remove("open");
+  const menu = document.getElementById("menuLinks");
+  const icon = document.querySelector(".hamburger-icon");
+  const hamburgerNav = document.querySelector("#hamburger-nav .hamburger-menu");
+  
+  if (menu && icon && hamburgerNav && !hamburgerNav.contains(event.target)) {
+    menu.classList.remove("open");
+    icon.classList.remove("open");
   }
 });

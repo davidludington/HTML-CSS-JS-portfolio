@@ -5,82 +5,86 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>David Ludington | Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="mediaqueries.css" />
     <link rel="icon" type="image/x-icon" href="assets/favicon_io/favicon-32x32.png">
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              bg: 'rgb(30, 30, 30)',
+              card: 'rgb(28, 28, 28)',
+              border: 'rgb(53, 53, 53)',
+              borderLight: 'rgb(163, 163, 163)',
+              textPrimary: 'rgb(155, 155, 155)',
+              textSecondary: 'rgb(85, 85, 85)',
+            },
+            fontFamily: {
+              poppins: ['Poppins', 'sans-serif'],
+            }
+          }
+        }
+      }
+    </script>
   </head>
-  <body>
-    <!-- <nav id="desktop-nav">
-      <div class="logo"><a href="index.html">David Ludington</a></div>
-      <div class="nav-expand-wrapper">
-        <button type="button" class="nav-expand-btn" onclick="toggleNavDropdown(event)" aria-label="Toggle menu">+</button>
-        <div class="nav-dropdown" id="navDropdown">
-          <a href="work.html">Work</a>
-          <a href="fashion.html">Fashion</a>
-        </div>
-      </div>
-    </nav> -->
-    <nav id="hamburger-nav">
-      <div class="logo"><a href="index.html">David Ludington</a></div>
-      <div class="hamburger-menu">
-        <div class="hamburger-icon" onclick="toggleMenu(event)" aria-label="Toggle menu">
+  <body class="bg-bg font-poppins text-textPrimary">
+    <nav id="hamburger-nav" class="fixed top-0 left-0 right-0 z-50 bg-bg h-16 flex items-center justify-between px-4 md:px-8 xl:hidden">
+      <div class="logo text-textPrimary text-xl md:text-2xl"><a href="index.html">David Ludington</a></div>
+      <div class="hamburger-menu relative">
+        <button type="button" class="hamburger-icon p-2" onclick="toggleMenu()" aria-label="Toggle menu">
           <span></span>
           <span></span>
           <span></span>
-        </div>
+        </button>
         <div class="menu-links" id="menuLinks">
-          <li><a href="work.html" onclick="toggleMenu(event)">Work</a></li>
-          <li><a href="fashion.html" onclick="toggleMenu(event)">Creative</a></li>
+          <a href="work.html">Work</a>
+          <a href="fashion.html">Creative</a>
         </div>
       </div>
     </nav>
-    <section id="profile">
-      <div class="section__pic-container">
-        <img src="./assets/headshot.jpeg" alt="David Ludington profile picture" />
+
+    <nav id="desktop-nav" class="hidden xl:flex fixed top-0 left-0 right-0 z-50 bg-bg h-[17vh] items-center justify-around">
+      <div class="logo text-textPrimary text-2xl"><a href="index.html">David Ludington</a></div>
+      <div class="flex gap-8 list-none text-2xl">
+        <a href="work.html" class="text-textPrimary hover:text-white hover:underline hover:underline-offset-4 transition-all">Work</a>
+        <a href="fashion.html" class="text-textPrimary hover:text-white hover:underline hover:underline-offset-4 transition-all">Creative</a>
       </div>
-      <div class="section__text">
-        <p class="section__text__p1">Hello, I'm</p>
-        <h1 class="title">David Ludington</h1>
-        <p class="section__text__p2">QA Engineer</p>
-        <div class="btn-container">
-          <button
-            class="btn btn-color-2"
-            onclick="window.open('./assets/David_Ludington_resume.pdf')"
-          >
-            Download CV
-          </button>
-          <button class="btn btn-color-1" onclick="location.href='work.html#contact'">
-            Contact Info
-          </button>
+    </nav>
+
+    <section id="profile" class="min-h-screen flex flex-col md:flex-row items-center justify-center gap-8 md:gap-12 lg:gap-20 pt-20 pb-8 px-4 md:px-8 lg:px-40">
+      <div class="section__pic-container w-64 h-64 md:w-80 md:h-80 lg:w-[400px] lg:h-[400px] flex-shrink-0">
+        <img src="./assets/headshot.jpeg" alt="David Ludington profile picture" class="w-full h-full object-cover rounded-full border-4 border-border" />
+      </div>
+      <div class="section__text text-center md:text-center">
+        <p class="section__text__p1 text-textSecondary font-semibold mb-2">Hello, I'm</p>
+        <h1 class="title text-4xl md:text-5xl lg:text-6xl text-textPrimary font-semibold mb-2">David Ludington</h1>
+        <p class="section__text__p2 text-xl md:text-2xl text-textSecondary mb-6">QA Engineer</p>
+        <div class="btn-container flex flex-col sm:flex-row justify-center gap-4 mb-6">
+          <button class="btn btn-color-2 px-6 py-3 min-w-[160px]" onclick="window.open('./assets/David_Ludington_resume.pdf')">Download CV</button>
+          <button class="btn btn-color-1 px-6 py-3 min-w-[160px]" onclick="location.href='work.html#contact'">Contact Info</button>
         </div>
-        <div id="socials-container">
-          <img
-            src="./assets/linkedin.png"
-            alt="My LinkedIn profile"
-            class="icon"
-            onclick="location.href='https://www.linkedin.com/in/david-ludington-903389249/'"
-          />
-          <img
-            src="./assets/github.png"
-            alt="My Github profile"
-            class="icon"
-            onclick="location.href='https://github.com/davidludington'"
-          />
+        <div id="socials-container" class="flex justify-center gap-4 mt-4">
+          <img src="./assets/linkedin.png" alt="My LinkedIn profile" class="icon w-8 h-8 md:w-10 md:h-10 cursor-pointer hover:scale-110 transition-transform" onclick="location.href='https://www.linkedin.com/in/david-ludington-903389249/'" />
+          <img src="./assets/github.png" alt="My Github profile" class="icon w-8 h-8 md:w-10 md:h-10 cursor-pointer hover:scale-110 transition-transform" onclick="location.href='https://github.com/davidludington'" />
         </div>
       </div>
     </section>
-    <footer>
-      <nav>
+    <footer class="py-8 px-4 text-center">
+      <nav class="mb-6">
         <div class="nav-links-container">
-          <ul class="nav-links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="work.html">Work</a></li>
-            <li><a href="fashion.html">Fashion</a></li>
+          <ul class="nav-links flex justify-center gap-6 md:gap-8 list-none text-lg md:text-xl">
+            <li><a href="index.html" class="text-textSecondary hover:text-textPrimary transition-colors">Home</a></li>
+            <li><a href="work.html" class="text-textSecondary hover:text-textPrimary transition-colors">Work</a></li>
+            <li><a href="fashion.html" class="text-textSecondary hover:text-textPrimary transition-colors">Creative</a></li>
           </ul>
         </div>
       </nav>
-      <p>Copyright &#169; 2024 David Ludington. All Rights Reserved.</p>
+      <p class="text-textSecondary">Copyright &#169; <span id="year"></span> David Ludington. All Rights Reserved.</p>
     </footer>
     <script src="script.js"></script>
+    <script>
+      document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
   </body>
 </html>

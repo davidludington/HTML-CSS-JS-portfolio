@@ -5,335 +5,199 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Work | David Ludington</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="mediaqueries.css" />
     <link rel="icon" type="image/x-icon" href="assets/favicon_io/favicon-32x32.png">
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              bg: 'rgb(30, 30, 30)',
+              card: 'rgb(28, 28, 28)',
+              border: 'rgb(53, 53, 53)',
+              borderLight: 'rgb(163, 163, 163)',
+              textPrimary: 'rgb(155, 155, 155)',
+              textSecondary: 'rgb(85, 85, 85)',
+            },
+            fontFamily: {
+              poppins: ['Poppins', 'sans-serif'],
+            }
+          }
+        }
+      }
+    </script>
   </head>
-  <body>
-    <!-- <nav id="desktop-nav">
-      <div class="logo"><a href="index.html">David Ludington</a></div>
-      <div class="nav-expand-wrapper">
-        <button type="button" class="nav-expand-btn" onclick="toggleNavDropdown(event)" aria-label="Open menu">+</button>
-        <div class="nav-dropdown" id="navDropdown">
+  <body class="bg-bg font-poppins text-textPrimary">
+    <nav id="hamburger-nav" class="fixed top-0 left-0 right-0 z-50 bg-bg h-16 flex items-center justify-between px-4 md:px-8 xl:hidden">
+      <div class="logo text-textPrimary text-xl md:text-2xl"><a href="index.html">David Ludington</a></div>
+      <div class="hamburger-menu relative">
+        <button type="button" class="hamburger-icon p-2" onclick="toggleMenu()" aria-label="Toggle menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <div class="menu-links" id="menuLinks">
           <a href="work.html">Work</a>
           <a href="fashion.html">Fashion</a>
         </div>
       </div>
-    </nav> -->
-    <nav id="hamburger-nav">
-      <div class="logo"><a href="index.html">David Ludington</a></div>
-      <div class="hamburger-menu">
-        <div class="hamburger-icon" onclick="toggleMenu(event)" aria-label="Toggle menu">
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
-        <div class="menu-links" id="menuLinks">
-          <li><a href="work.html" onclick="toggleMenu(event)">Work</a></li>
-          <li><a href="fashion.html" onclick="toggleMenu(event)">Fashion</a></li>
-        </div>
+    </nav>
+
+    <nav id="desktop-nav" class="hidden xl:flex fixed top-0 left-0 right-0 z-50 bg-bg h-[17vh] items-center justify-around">
+      <div class="logo text-textPrimary text-2xl"><a href="index.html">David Ludington</a></div>
+      <div class="flex gap-8 list-none text-2xl">
+        <a href="work.html" class="text-textPrimary hover:text-white hover:underline hover:underline-offset-4 transition-all">Work</a>
+        <a href="fashion.html" class="text-textPrimary hover:text-white hover:underline hover:underline-offset-4 transition-all">Fashion</a>
       </div>
     </nav>
-    <section id="about">
-      <p class="section__text__p1">Get To Know More</p>
-      <h1 class="title">About Me</h1>
-      <div class="section-container">
-        <div class="about-details-container">
-          <div class="about-containers">
-            <div class="details-container">
-              <img
-                src="./assets/experience.png"
-                alt="Experience icon"
-                class="icon"
-              />
-              <h3>Current Role</h3>
-              <p>QA Autoamtion Enginer <br />Encyclopedia Britannica</p>
-            </div>
-            <div class="details-container">
-              <img
-                src="./assets/education.png"
-                alt="Education icon"
-                class="icon"
-              />
-              <h3>Loyola University Chicago</h3>
-              <p>Bachelors of Science - 2025<br />Computer science</p>
-            </div>
-          </div>
-          <div class="text-container">
-            <p>
-                I am a highly motivated individual seeking an opportunity in an 
-                innovative organization where I can leverage my strong analytical 
-                and problem-solving skills to contribute to the development and 
-                implementation of new technologies. I am eager to apply my knowledge 
-                in programming languages, data structures, and software engineering to 
-                drive efficiency, optimize processes, and deliver high-quality solutions 
-                in a collaborative team environment.
 
-            </p>
+    <section id="about" class="min-h-screen pt-20 px-4 md:px-8 lg:px-40">
+      <h1 class="title text-3xl md:text-4xl lg:text-5xl text-center mb-8">Work</h1>
+      <div class="section-container max-w-4xl mx-auto">
+        <div class="about-details-container flex flex-col md:flex-row gap-4 md:gap-8 justify-center">
+          <div class="details-container flex-1 text-center p-6 bg-card rounded-2xl border border-borderLight">
+            <img src="./assets/experience.png" alt="Experience icon" class="icon w-8 h-8 mx-auto mb-4" />
+            <h3 class="text-lg md:text-xl text-textPrimary mb-2">Current Role</h3>
+            <p class="text-textSecondary">QA Automation Engineer<br />Encyclopedia Britannica</p>
+          </div>
+          <div class="details-container flex-1 text-center p-6 bg-card rounded-2xl border border-borderLight">
+            <img src="./assets/education.png" alt="Education icon" class="icon w-8 h-8 mx-auto mb-4" />
+            <h3 class="text-lg md:text-xl text-textPrimary mb-2">Loyola University Chicago</h3>
+            <p class="text-textSecondary">Bachelors of Science - 2025<br />Computer Science</p>
           </div>
         </div>
       </div>
-      <img
-        src="./assets/arrow.png"
-        alt="Arrow icon"
-        class="icon arrow"
-        onclick="location.href='./#experience'"
-      />
     </section>
-    <section id="experience">
-      <p class="section__text__p1">Explore My</p>
-      <h1 class="title">Experience</h1>
-      <div class="experience-details-container">
-        <div class="about-containers">
-          <div class="details-container">
-            <h2 class="experience-sub-title">Frameworks</h2>
-            <div class="article-container">
-              <article>
-                <img
-                  src="./assets/selenium.png"
-                  alt="Experience icon"
-                  class="icon"
-                />
-                <div>
-                  <h3>Selenium</h3>
-                  <p></p>
-                </div>
+
+    <section id="experience" class="min-h-screen pt-8 px-4 md:px-8 lg:px-40">
+      <p class="section__text__p1 text-textSecondary text-center mb-2">Explore My</p>
+      <h1 class="title text-3xl md:text-4xl lg:text-5xl text-center mb-8">Experience</h1>
+      <div class="experience-details-container max-w-5xl mx-auto">
+        <div class="grid md:grid-cols-2 gap-6 md:gap-8">
+          <div class="details-container p-6 bg-card rounded-2xl border border-borderLight">
+            <h2 class="experience-sub-title text-xl md:text-2xl text-textSecondary font-semibold mb-6">Frameworks</h2>
+            <div class="article-container flex flex-wrap gap-4 md:gap-6 justify-start">
+              <article class="flex items-center gap-3 min-w-[100px]">
+                <img src="./assets/selenium.png" alt="Selenium" class="icon w-8 h-8" />
+                <div><h3 class="text-sm text-textPrimary">Selenium</h3></div>
               </article>
-              <article>
-                <img
-                  src="./assets/appium.jpeg"
-                  alt="Experience icon"
-                  class="icon"
-                />
-                <div>
-                  <h3>Appium</h3>
-                  <p></p>
-                </div>
+              <article class="flex items-center gap-3 min-w-[100px]">
+                <img src="./assets/appium.jpeg" alt="Appium" class="icon w-8 h-8" />
+                <div><h3 class="text-sm text-textPrimary">Appium</h3></div>
               </article>
-              <article>
-                <img
-                  src="./assets/pytest.png"
-                  alt="Experience icon"
-                  class="icon"
-                />
-                <div>
-                  <h3>Pytest</h3>
-                  <p></p>
-                </div>
+              <article class="flex items-center gap-3 min-w-[100px]">
+                <img src="./assets/pytest.png" alt="Pytest" class="icon w-8 h-8" />
+                <div><h3 class="text-sm text-textPrimary">Pytest</h3></div>
               </article>
             </div>
           </div>
-          <div class="details-container">
-            <h2 class="experience-sub-title">Lanuguages</h2>
-            <div class="article-container">
-              <article>
-                <img
-                  src="./assets/java_logo.png"
-                  alt="Experience icon"
-                  class="icon"
-                />
-                <div>
-                  <h3>Java</h3>
-                  <p>Intermediate</p>
-                </div>
+          <div class="details-container p-6 bg-card rounded-2xl border border-borderLight">
+            <h2 class="experience-sub-title text-xl md:text-2xl text-textSecondary font-semibold mb-6">Languages</h2>
+            <div class="article-container flex flex-wrap gap-4 md:gap-6 justify-start">
+              <article class="flex items-center gap-3 min-w-[100px]">
+                <img src="./assets/java_logo.png" alt="Java" class="icon w-8 h-8" />
+                <div><h3 class="text-sm text-textPrimary">Java</h3><p class="text-xs text-textSecondary">Intermediate</p></div>
               </article>
-              <article>
-                <img
-                  src="./assets/pylogo.png"
-                  alt="Experience icon"
-                  class="icon"
-                />
-                <div>
-                  <h3>Python</h3>
-                  <p>Most Experiece</p>
-                </div>
+              <article class="flex items-center gap-3 min-w-[100px]">
+                <img src="./assets/pylogo.png" alt="Python" class="icon w-8 h-8" />
+                <div><h3 class="text-sm text-textPrimary">Python</h3><p class="text-xs text-textSecondary">Most Experience</p></div>
               </article>
-              <article>
-                <img
-                  src="./assets/c_logo.png"
-                  alt="Experience icon"
-                  class="icon"
-                />
-                <div>
-                  <h3>C/C++</h3>
-                  <p>Intermediate</p>
-                </div>
+              <article class="flex items-center gap-3 min-w-[100px]">
+                <img src="./assets/c_logo.png" alt="C/C++" class="icon w-8 h-8" />
+                <div><h3 class="text-sm text-textPrimary">C/C++</h3><p class="text-xs text-textSecondary">Intermediate</p></div>
               </article>
-              <article>
-                <img
-                  src="./assets/git_logo.png"
-                  alt="Experience icon"
-                  class="icon"
-                />
-                <div>
-                  <h3>Git</h3>
-                  <p>Intermediate</p>
-                </div>
+              <article class="flex items-center gap-3 min-w-[100px]">
+                <img src="./assets/git_logo.png" alt="Git" class="icon w-8 h-8" />
+                <div><h3 class="text-sm text-textPrimary">Git</h3><p class="text-xs text-textSecondary">Intermediate</p></div>
               </article>
-              <article>
-                <img
-                  src="./assets/HTML_logo.png"
-                  alt="Experience icon"
-                  class="icon"
-                />
-                <div>
-                  <h3>HTML</h3>
-                  <p>Basic</p>
-                </div>
+              <article class="flex items-center gap-3 min-w-[100px]">
+                <img src="./assets/HTML_logo.png" alt="HTML" class="icon w-8 h-8" />
+                <div><h3 class="text-sm text-textPrimary">HTML</h3><p class="text-xs text-textSecondary">Basic</p></div>
               </article>
-              <article>
-                <img
-                  src="./assets/css_logo.png"
-                  alt="Experience icon"
-                  class="icon"
-                />
-                <div>
-                  <h3>CSS</h3>
-                  <p>Basic</p>
-                </div>
+              <article class="flex items-center gap-3 min-w-[100px]">
+                <img src="./assets/css_logo.png" alt="CSS" class="icon w-8 h-8" />
+                <div><h3 class="text-sm text-textPrimary">CSS</h3><p class="text-xs text-textSecondary">Basic</p></div>
               </article>
-              <article>
-                <img
-                  src="./assets/javascript_logo.png"
-                  alt="Experience icon"
-                  class="icon"
-                />
-                <div>
-                  <h3>JavaScript</h3>
-                  <p>Basic</p>
-                </div>
+              <article class="flex items-center gap-3 min-w-[100px]">
+                <img src="./assets/javascript_logo.png" alt="JavaScript" class="icon w-8 h-8" />
+                <div><h3 class="text-sm text-textPrimary">JavaScript</h3><p class="text-xs text-textSecondary">Basic</p></div>
               </article>
             </div>
           </div>
         </div>
       </div>
-      <img
-        src="./assets/arrow.png"
-        alt="Arrow icon"
-        class="icon arrow"
-        onclick="location.href='./#projects'"
-      />
     </section>
-    <section id="projects">
-      <p class="section__text__p1">Browse My Recent</p>
-      <h1 class="title">Projects</h1>
-      <div class="experience-details-container">
-        <div class="about-containers">
-          <div class="details-container color-container">
-            <div class="article-container">
-              <img
-                src="./assets/ascii_project.png"
-                alt="Project 1"
-                class="project-img"
-              />
+
+    <section id="projects" class="min-h-screen pt-8 px-4 md:px-8 lg:px-40">
+      <p class="section__text__p1 text-textSecondary text-center mb-2">Browse My Recent</p>
+      <h1 class="title text-3xl md:text-4xl lg:text-5xl text-center mb-8">Projects</h1>
+      <div class="experience-details-container max-w-5xl mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+          <div class="details-container color-container p-4 md:p-6 bg-card rounded-2xl border border-borderLight">
+            <div class="article-container mb-4">
+              <img src="./assets/ascii_project.png" alt="Project 1" class="project-img w-full h-48 object-cover rounded-xl" />
             </div>
-            <h2 class="experience-sub-title project-title">.jpeg - ASCII art</h2>
-            <div class="btn-container">
-              <button
-                class="btn btn-color-2 project-btn"
-                onclick="location.href='https://github.com/davidludington/image_to_ascii'"
-              >
-                Github
-              </button>
-              <button
-                class="btn btn-color-2 project-btn"
-                onclick="location.href='https://github.com/'"
-              >
-                Live Demo
-              </button>
+            <h2 class="experience-sub-title project-title text-lg md:text-xl text-textPrimary mb-4">.jpeg - ASCII art</h2>
+            <div class="btn-container flex flex-col sm:flex-row gap-3">
+              <button class="btn btn-color-2 project-btn px-4 py-2 text-sm" onclick="location.href='https://github.com/davidludington/image_to_ascii'">Github</button>
+              <button class="btn btn-color-2 project-btn px-4 py-2 text-sm" onclick="location.href='https://github.com/'">Live Demo</button>
             </div>
           </div>
-          <div class="details-container color-container">
-            <div class="article-container">
-              <img
-                src="./assets/snake_project.png"
-                alt="Project 2"
-                class="project-img"
-              />
+          <div class="details-container color-container p-4 md:p-6 bg-card rounded-2xl border border-borderLight">
+            <div class="article-container mb-4">
+              <img src="./assets/snake_project.png" alt="Project 2" class="project-img w-full h-48 object-cover rounded-xl" />
             </div>
-            <h2 class="experience-sub-title project-title">Snake Game</h2>
-            <div class="btn-container">
-              <button
-                class="btn btn-color-2 project-btn"
-                onclick="location.href='https://github.com/davidludington/snake-raylibTest'"
-              >
-                Github
-              </button>
-              <button
-                class="btn btn-color-2 project-btn"
-                onclick="location.href='https://github.com/'"
-              >
-                Live Demo
-              </button>
+            <h2 class="experience-sub-title project-title text-lg md:text-xl text-textPrimary mb-4">Snake Game</h2>
+            <div class="btn-container flex flex-col sm:flex-row gap-3">
+              <button class="btn btn-color-2 project-btn px-4 py-2 text-sm" onclick="location.href='https://github.com/davidludington/snake-raylibTest'">Github</button>
+              <button class="btn btn-color-2 project-btn px-4 py-2 text-sm" onclick="location.href='https://github.com/'">Live Demo</button>
             </div>
           </div>
-          <div class="details-container color-container">
-            <div class="article-container">
-              <img
-                src="./assets/schedule_maker_project.png"
-                alt="Project 3"
-                class="project-img"
-              />
+          <div class="details-container color-container p-4 md:p-6 bg-card rounded-2xl border border-borderLight">
+            <div class="article-container mb-4">
+              <img src="./assets/schedule_maker_project.png" alt="Project 3" class="project-img w-full h-48 object-cover rounded-xl" />
             </div>
-            <h2 class="experience-sub-title project-title">Schedule Builder</h2>
-            <div class="btn-container">
-              <button
-                class="btn btn-color-2 project-btn"
-                onclick="location.href='https://github.com/davidludington/halas_Mock_Schedule_maker'"
-              >
-                Github
-              </button>
-              <button
-                class="btn btn-color-2 project-btn"
-                onclick="location.href='https://github.com/'"
-              >
-                Live Demo
-              </button> 
+            <h2 class="experience-sub-title project-title text-lg md:text-xl text-textPrimary mb-4">Schedule Builder</h2>
+            <div class="btn-container flex flex-col sm:flex-row gap-3">
+              <button class="btn btn-color-2 project-btn px-4 py-2 text-sm" onclick="location.href='https://github.com/davidludington/halas_Mock_Schedule_maker'">Github</button>
+              <button class="btn btn-color-2 project-btn px-4 py-2 text-sm" onclick="location.href='https://github.com/'">Live Demo</button>
             </div>
           </div>
         </div>
       </div>
-      <img
-        src="./assets/arrow.png"
-        alt="Arrow icon"
-        class="icon arrow"
-        onclick="location.href='./#contact'"
-      />
     </section>
-    <section id="contact">
-      <p class="section__text__p1">Get in Touch</p>
-      <h1 class="title">Contact Me</h1>
-      <div class="contact-info-upper-container">
-        <div class="contact-info-container">
-          <img
-            src="./assets/email.png"
-            alt="Email icon"
-            class="icon contact-icon email-icon"
-          />
-          <p><a href="mailto:diludington@gmail.com">diludington@gmail.com</a></p>
+
+    <section id="contact" class="min-h-[70vh] flex flex-col justify-center items-center pt-8 px-4">
+      <p class="section__text__p1 text-textSecondary text-center mb-2">Get in Touch</p>
+      <h1 class="title text-3xl md:text-4xl lg:text-5xl text-center mb-8">Contact Me</h1>
+      <div class="contact-info-upper-container flex flex-col sm:flex-row gap-4 p-4 md:p-6 bg-textPrimary rounded-2xl border border-borderLight">
+        <div class="contact-info-container flex items-center gap-3 p-3">
+          <img src="./assets/email.png" alt="Email icon" class="icon contact-icon email-icon w-8 h-8 md:w-10 md:h-10" />
+          <p class="text-base md:text-lg text-bg"><a href="mailto:diludington@gmail.com">diludington@gmail.com</a></p>
         </div>
-        <div class="contact-info-container">
-          <img
-            src="./assets/linkedin.png"
-            alt="LinkedIn icon"
-            class="icon contact-icon"
-          />
-          <p><a href="https://www.linkedin.com/in/david-ludington-903389249/">LinkedIn</a></p>
+        <div class="contact-info-container flex items-center gap-3 p-3">
+          <img src="./assets/linkedin.png" alt="LinkedIn icon" class="icon contact-icon w-8 h-8 md:w-10 md:h-10" />
+          <p class="text-base md:text-lg text-bg"><a href="https://www.linkedin.com/in/david-ludington-903389249/">LinkedIn</a></p>
         </div>
       </div>
     </section>
-    <footer>
-      <nav>
+
+    <footer class="py-8 px-4 text-center">
+      <nav class="mb-6">
         <div class="nav-links-container">
-          <ul class="nav-links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="work.html">Work</a></li>
-            <li><a href="fashion.html">Fashion</a></li>
+          <ul class="nav-links flex justify-center gap-6 md:gap-8 list-none text-lg md:text-xl">
+            <li><a href="index.html" class="text-textSecondary hover:text-textPrimary transition-colors">Home</a></li>
+            <li><a href="work.html" class="text-textSecondary hover:text-textPrimary transition-colors">Work</a></li>
+            <li><a href="fashion.html" class="text-textSecondary hover:text-textPrimary transition-colors">Fashion</a></li>
           </ul>
         </div>
       </nav>
-      <p>Copyright &#169; 2024 David Ludington. All Rights Reserved.</p>
+      <p class="text-textSecondary">Copyright &#169; <span id="year"></span> David Ludington. All Rights Reserved.</p>
     </footer>
     <script src="script.js"></script>
+    <script>
+      document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
   </body>
 </html>

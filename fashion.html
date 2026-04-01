@@ -5,66 +5,124 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Fashion | David Ludington</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="mediaqueries.css" />
     <link rel="icon" type="image/x-icon" href="assets/favicon_io/favicon-32x32.png">
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              bg: 'rgb(30, 30, 30)',
+              card: 'rgb(28, 28, 28)',
+              border: 'rgb(53, 53, 53)',
+              borderLight: 'rgb(163, 163, 163)',
+              textPrimary: 'rgb(155, 155, 155)',
+              textSecondary: 'rgb(85, 85, 85)',
+            },
+            fontFamily: {
+              poppins: ['Poppins', 'sans-serif'],
+            }
+          }
+        }
+      }
+    </script>
   </head>
-  <body>
-    <!-- <nav id="desktop-nav">
-      <div class="logo"><a href="index.html">David Ludington</a></div>
-      <div class="nav-expand-wrapper">
-        <button type="button" class="nav-expand-btn" onclick="toggleNavDropdown(event)" aria-label="Open menu">+</button>
-        <div class="nav-dropdown" id="navDropdown">
+  <body class="bg-bg font-poppins text-textPrimary">
+    <nav id="hamburger-nav" class="fixed top-0 left-0 right-0 z-50 bg-bg h-16 flex items-center justify-between px-4 md:px-8 xl:hidden">
+      <div class="logo text-textPrimary text-xl md:text-2xl"><a href="index.html">David Ludington</a></div>
+      <div class="hamburger-menu relative">
+        <button type="button" class="hamburger-icon p-2" onclick="toggleMenu()" aria-label="Toggle menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <div class="menu-links" id="menuLinks">
           <a href="work.html">Work</a>
           <a href="fashion.html">Fashion</a>
         </div>
       </div>
-    </nav> -->
-    <nav id="hamburger-nav">
-      <div class="logo"><a href="index.html">David Ludington</a></div>
-      <div class="hamburger-menu">
-        <div class="hamburger-icon" onclick="toggleMenu(event)" aria-label="Toggle menu">
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
-        <div class="menu-links" id="menuLinks">
-          <li><a href="work.html" onclick="toggleMenu(event)">Work</a></li>
-          <li><a href="fashion.html" onclick="toggleMenu(event)">Fashion</a></li>
-        </div>
+    </nav>
+
+    <nav id="desktop-nav" class="hidden xl:flex fixed top-0 left-0 right-0 z-50 bg-bg h-[17vh] items-center justify-around">
+      <div class="logo text-textPrimary text-2xl"><a href="index.html">David Ludington</a></div>
+      <div class="flex gap-8 list-none text-2xl">
+        <a href="work.html" class="text-textPrimary hover:text-white hover:underline hover:underline-offset-4 transition-all">Work</a>
+        <a href="fashion.html" class="text-textPrimary hover:text-white hover:underline hover:underline-offset-4 transition-all">Fashion</a>
       </div>
     </nav>
-    <section id="fashion">
-      <p class="section__text__p1">Explore My</p>
-      <h1 class="title">Fashion</h1>
-      <p class="fashion-intro">Work in progress — pictures and process.</p>
-      <div class="fashion-grid">
+
+    <section id="fashion" class="min-h-screen flex flex-col items-center pt-20 pb-8 px-4">
+      <p class="section__text__p1 text-textSecondary mb-2">Explore My</p>
+      <h1 class="title text-3xl md:text-4xl lg:text-5xl text-center mb-4">Fashion</h1>
+      <p class="fashion-intro text-textSecondary text-center mb-8 max-w-md">2025 pants — pictures and process.</p>
+      <div class="fashion-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6 max-w-7xl w-full">
         <div class="fashion-item">
-          <div class="fashion-placeholder"></div>
-          <p class="fashion-caption">Image placeholder</p>
+          <img src="./assets/2025-pants/IMG_6234.jpg" alt="2025 pants" class="fashion-img w-full aspect-square object-cover rounded-2xl border border-border" />
         </div>
         <div class="fashion-item">
-          <div class="fashion-placeholder"></div>
-          <p class="fashion-caption">Image placeholder</p>
+          <img src="./assets/2025-pants/IMG_6236.jpg" alt="2025 pants" class="fashion-img w-full aspect-square object-cover rounded-2xl border border-border" />
         </div>
         <div class="fashion-item">
-          <div class="fashion-placeholder"></div>
-          <p class="fashion-caption">Image placeholder</p>
+          <img src="./assets/2025-pants/IMG_6240.jpg" alt="2025 pants" class="fashion-img w-full aspect-square object-cover rounded-2xl border border-border" />
+        </div>
+        <div class="fashion-item">
+          <img src="./assets/2025-pants/IMG_6241.jpg" alt="2025 pants" class="fashion-img w-full aspect-square object-cover rounded-2xl border border-border" />
+        </div>
+        <div class="fashion-item">
+          <img src="./assets/2025-pants/IMG_6243.jpg" alt="2025 pants" class="fashion-img w-full aspect-square object-cover rounded-2xl border border-border" />
+        </div>
+        <div class="fashion-item">
+          <img src="./assets/2025-pants/IMG_6244.jpg" alt="2025 pants" class="fashion-img w-full aspect-square object-cover rounded-2xl border border-border" />
+        </div>
+        <div class="fashion-item">
+          <img src="./assets/2025-pants/IMG_6247.jpg" alt="2025 pants" class="fashion-img w-full aspect-square object-cover rounded-2xl border border-border" />
+        </div>
+        <div class="fashion-item">
+          <img src="./assets/2025-pants/IMG_6248.jpg" alt="2025 pants" class="fashion-img w-full aspect-square object-cover rounded-2xl border border-border" />
+        </div>
+        <div class="fashion-item">
+          <img src="./assets/2025-pants/IMG_6251.jpg" alt="2025 pants" class="fashion-img w-full aspect-square object-cover rounded-2xl border border-border" />
+        </div>
+        <div class="fashion-item">
+          <img src="./assets/2025-pants/IMG_6252.jpg" alt="2025 pants" class="fashion-img w-full aspect-square object-cover rounded-2xl border border-border" />
+        </div>
+        <div class="fashion-item">
+          <img src="./assets/2025-pants/IMG_6254.jpg" alt="2025 pants" class="fashion-img w-full aspect-square object-cover rounded-2xl border border-border" />
+        </div>
+        <div class="fashion-item">
+          <img src="./assets/2025-pants/IMG_6259.jpg" alt="2025 pants" class="fashion-img w-full aspect-square object-cover rounded-2xl border border-border" />
+        </div>
+        <div class="fashion-item">
+          <img src="./assets/2025-pants/IMG_6260.jpg" alt="2025 pants" class="fashion-img w-full aspect-square object-cover rounded-2xl border border-border" />
+        </div>
+        <div class="fashion-item">
+          <img src="./assets/2025-pants/IMG_6261.jpg" alt="2025 pants" class="fashion-img w-full aspect-square object-cover rounded-2xl border border-border" />
+        </div>
+        <div class="fashion-item">
+          <img src="./assets/2025-pants/IMG_6263.jpg" alt="2025 pants" class="fashion-img w-full aspect-square object-cover rounded-2xl border border-border" />
+        </div>
+        <div class="fashion-item">
+          <img src="./assets/2025-pants/IMG_6264.jpg" alt="2025 pants" class="fashion-img w-full aspect-square object-cover rounded-2xl border border-border" />
         </div>
       </div>
     </section>
-    <footer>
-      <nav>
+
+    <footer class="py-8 px-4 text-center">
+      <nav class="mb-6">
         <div class="nav-links-container">
-          <ul class="nav-links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="work.html">Work</a></li>
-            <li><a href="fashion.html">Fashion</a></li>
+          <ul class="nav-links flex justify-center gap-6 md:gap-8 list-none text-lg md:text-xl">
+            <li><a href="index.html" class="text-textSecondary hover:text-textPrimary transition-colors">Home</a></li>
+            <li><a href="work.html" class="text-textSecondary hover:text-textPrimary transition-colors">Work</a></li>
+            <li><a href="fashion.html" class="text-textSecondary hover:text-textPrimary transition-colors">Fashion</a></li>
           </ul>
         </div>
       </nav>
-      <p>Copyright &#169; 2024 David Ludington. All Rights Reserved.</p>
+      <p class="text-textSecondary">Copyright &#169; <span id="year"></span> David Ludington. All Rights Reserved.</p>
     </footer>
     <script src="script.js"></script>
+    <script>
+      document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
   </body>
 </html>
