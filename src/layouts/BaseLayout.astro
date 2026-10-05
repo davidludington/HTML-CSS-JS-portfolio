@@ -3,6 +3,8 @@ import '../styles/global.css';
 import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 import { site } from '../data/site';
+import { getImage } from 'astro:assets';
+import headshot from '../assets/headshot.jpeg';
 
 type Props = {
 	title: string;
@@ -10,6 +12,27 @@ type Props = {
 };
 
 const { title, description = site.description } = Astro.props;
+
+/*
+ * Astro.site comes from `site` in astro.config.mjs. Without it the canonical and
+ * og:url tags would silently be dropped, so fall back to a relative-safe value.
+ */
+const canonical = new URL(Astro.url.pathname, Astro.site ?? 'https://davidludington.netlify.app');
+
+/*
+ * One shared social preview, built once from the headshot and cover-cropped to
+ * the 1.91:1 that Open Graph expects. Swap in a designed 1200x630 image if you
+ * ever make one; the call is cached, so it costs nothing per page.
+ */
+const ogImage = await getImage({
+	src: headshot,
+	width: 1200,
+	height: 630,
+	fit: 'cover',
+	position: 'top',
+	format: 'jpg',
+});
+const ogImageUrl = new URL(ogImage.src, Astro.site ?? 'https://davidludington.netlify.app');
 ---
 
 <!doctype html>
@@ -21,6 +44,19 @@ const { title, description = site.description } = Astro.props;
 		<meta name="generator" content={Astro.generator} />
 		<meta name="description" content={description} />
 		<title>{title}</title>
+
+		<link rel="canonical" href={canonical} />
+		<meta name="theme-color" content="#1e1e1e" />
+
+		<meta property="og:type" content="website" />
+		<meta property="og:site_name" content={site.name} />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:url" content={canonical} />
+		<meta property="og:image" content={ogImageUrl} />
+		<meta property="og:image:width" content="1200" />
+		<meta property="og:image:height" content="630" />
+		<meta name="twitter:card" content="summary_large_image" />
 
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />

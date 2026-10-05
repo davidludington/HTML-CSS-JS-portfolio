@@ -341,39 +341,3 @@
 		}
 	}
 }
-
-/*
- * NAV
- *
- * Unlayered on purpose. These selectors use IDs so they outrank Tailwind's
- * `hidden` / `xl:flex` / `xl:hidden` utilities on #desktop-nav and
- * #hamburger-nav, which is how the original stylesheet resolved them.
- */
-#desktop-nav {
-	display: flex;
-}
-
-#desktop-nav a {
-	color: rgb(155, 155, 155);
-	text-decoration: none;
-}
-
-#desktop-nav a:hover {
-	color: white;
-	text-decoration: underline;
-	text-underline-offset: 1rem;
-}
-
-#hamburger-nav {
-	display: none;
-}
-
-@media (max-width: 1279px) {
-	#desktop-nav {
-		display: none !important;
-	}
-
-	#hamburger-nav {
-		display: flex;
-	}
-}

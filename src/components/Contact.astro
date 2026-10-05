@@ -1,6 +1,7 @@
 ---
 import { contactLinks } from '../data/site';
 import { icon } from '../data/icons';
+import Icon from './Icon.astro';
 ---
 
 <section
@@ -15,8 +16,8 @@ import { icon } from '../data/icons';
 		{
 			contactLinks.map((link) => (
 				<div class="contact-info-container flex items-center gap-3 p-3">
-					<img
-						src={icon(link.icon).src}
+					<Icon
+						image={icon(link.icon)}
 						alt={link.label}
 						class:list={['icon', 'contact-icon', link.iconClass, 'w-8', 'h-8', 'md:w-10', 'md:h-10']}
 					/>

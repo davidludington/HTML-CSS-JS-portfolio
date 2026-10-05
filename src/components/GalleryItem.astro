@@ -1,17 +1,27 @@
 ---
+import { Image } from 'astro:assets';
+
 type Props = {
-	src: string;
+	/** Original photo, used to build the grid thumbnail. */
+	image: ImageMetadata;
+	/** Pre-optimized large variant the lightbox loads on demand. */
+	fullSrc: string;
 	alt: string;
 };
 
-const { src, alt } = Astro.props;
+const { image, fullSrc, alt } = Astro.props;
 ---
 
 <div class="fashion-item">
-	<img
-		src={src}
+	<Image
+		src={image}
 		alt={alt}
+		width={1280}
+		widths={[640, 1280]}
+		sizes="(min-width: 1280px) 302px, (min-width: 1024px) 410px, (min-width: 640px) 608px, 100vw"
+		quality={75}
+		loading="lazy"
 		class="fashion-img w-full aspect-square object-cover rounded-2xl border border-border cursor-zoom-in"
-		data-lightbox-src={src}
+		data-lightbox-src={fullSrc}
 	/>
 </div>

@@ -1,7 +1,9 @@
 ---
+import { Image } from 'astro:assets';
 import headshot from '../assets/headshot.jpeg';
 import { site, socials } from '../data/site';
 import { icon } from '../data/icons';
+import Icon from './Icon.astro';
 ---
 
 <section
@@ -11,9 +13,18 @@ import { icon } from '../data/icons';
 	<div
 		class="section__pic-container w-64 h-64 md:w-80 md:h-80 lg:w-[400px] lg:h-[400px] flex-shrink-0"
 	>
-		<img
-			src={headshot.src}
+		{/*
+			The headshot is the LCP element on every page that shows it, so it is
+			eager and high priority rather than lazy. 713px is the source width, so
+			that is the largest variant worth generating.
+		*/}
+		<Image
+			src={headshot}
 			alt={`${site.name} profile picture`}
+			widths={[400, 713]}
+			sizes="(min-width: 1024px) 400px, (min-width: 768px) 320px, 256px"
+			loading="eager"
+			fetchpriority="high"
 			class="w-full h-full object-cover rounded-full border-4 border-border"
 		/>
 	</div>
@@ -41,8 +52,8 @@ import { icon } from '../data/icons';
 			{
 				socials.map((social) => (
 					<a href={social.href}>
-						<img
-							src={icon(social.icon).src}
+						<Icon
+							image={icon(social.icon)}
 							alt={social.label}
 							class="icon w-8 h-8 md:w-10 md:h-10 cursor-pointer hover:scale-110 transition-transform"
 						/>

@@ -1,0 +1,27 @@
+---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+
+type Props = {
+	image: ImageMetadata;
+	alt: string;
+	class?: string;
+};
+
+const { image, alt, class: className } = Astro.props;
+---
+
+{/*
+	Every icon renders at 32-40px, but the sources are 275-1000px square, so the
+	browser was decoding megabytes of pixels to paint a thumbnail. 40/80 covers
+	1x and 2x at the largest rendered size.
+*/}
+<Image
+	src={image}
+	alt={alt}
+	width={80}
+	widths={[40, 80]}
+	sizes="40px"
+	loading="lazy"
+	class={className}
+/>
