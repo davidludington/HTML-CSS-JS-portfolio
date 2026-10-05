@@ -1,0 +1,38 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import GalleryItem from '../components/GalleryItem.astro';
+import Lightbox from '../components/Lightbox.astro';
+import { site } from '../data/site';
+
+const looks = (await getCollection('looks')).sort((a, b) => a.data.order - b.data.order);
+---
+
+<BaseLayout
+	title={`Creative | ${site.name}`}
+	description="Pictures and process from my creative work."
+>
+	<section
+		id="creative"
+		class="min-h-screen flex flex-col items-center pt-20 xl:pt-40 pb-8 px-4"
+	>
+		<h1 class="title text-3xl md:text-4xl lg:text-5xl text-center mb-4">Creative</h1>
+
+		{
+			looks.map((look) => (
+				<>
+					<p class="fashion-intro text-textSecondary text-center mb-8 max-w-md">
+						{look.data.description}
+					</p>
+					<div class="fashion-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6 max-w-7xl w-full">
+						{look.data.photos.map((photo) => (
+							<GalleryItem src={photo.src} alt={look.data.title} />
+						))}
+					</div>
+				</>
+			))
+		}
+	</section>
+
+	<Lightbox />
+</BaseLayout>

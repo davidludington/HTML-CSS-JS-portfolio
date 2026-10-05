@@ -1,0 +1,41 @@
+<div id="lightbox" class="lightbox">
+	<button type="button" class="lightbox-close" aria-label="Close image">&times;</button>
+	<img class="lightbox-img" id="lightbox-img" src="" alt="Full size image" />
+</div>
+
+<script>
+	const lightbox = document.getElementById('lightbox');
+	const lightboxImg = document.getElementById('lightbox-img') as HTMLImageElement | null;
+	const closeButton = document.querySelector<HTMLButtonElement>('.lightbox-close');
+
+	function openLightbox(src: string, alt: string) {
+		if (!lightbox || !lightboxImg) return;
+		lightboxImg.src = src;
+		lightboxImg.alt = alt;
+		lightbox.classList.add('active');
+		document.body.style.overflow = 'hidden';
+	}
+
+	function closeLightbox() {
+		lightbox?.classList.remove('active');
+		document.body.style.overflow = '';
+	}
+
+	document.addEventListener('click', (event) => {
+		const target = event.target as HTMLElement;
+
+		const trigger = target.closest<HTMLElement>('[data-lightbox-src]');
+		if (trigger) {
+			openLightbox(trigger.dataset.lightboxSrc!, trigger.getAttribute('alt') ?? '');
+			return;
+		}
+
+		if (target === lightbox || target === closeButton) {
+			closeLightbox();
+		}
+	});
+
+	document.addEventListener('keydown', (event) => {
+		if (event.key === 'Escape') closeLightbox();
+	});
+</script>

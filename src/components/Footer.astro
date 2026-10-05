@@ -1,0 +1,33 @@
+---
+import { navLinks, site } from '../data/site';
+
+const year = new Date().getFullYear();
+
+const footerLinks = [{ label: 'Home', href: '/' }, ...navLinks];
+---
+
+<footer class="py-8 px-4 text-center">
+	<nav class="mb-6">
+		<div class="nav-links-container">
+			<ul
+				class="nav-links flex justify-center gap-6 md:gap-8 list-none text-lg md:text-xl"
+			>
+				{
+					footerLinks.map((link) => (
+						<li>
+							<a
+								href={link.href}
+								class="text-textSecondary hover:text-textPrimary transition-colors"
+							>
+								{link.label}
+							</a>
+						</li>
+					))
+				}
+			</ul>
+		</div>
+	</nav>
+	<p class="text-textSecondary">
+		Copyright &copy; {year} {site.name}. All Rights Reserved.
+	</p>
+</footer>

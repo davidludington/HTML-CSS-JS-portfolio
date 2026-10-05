@@ -1,0 +1,71 @@
+---
+import { navLinks, site } from '../data/site';
+---
+
+<nav
+	id="hamburger-nav"
+	class="fixed top-0 left-0 right-0 z-50 bg-bg h-16 flex items-center justify-between px-4 md:px-8 xl:hidden"
+>
+	<div class="logo text-textPrimary text-xl md:text-2xl">
+		<a href="/">{site.name}</a>
+	</div>
+	<div class="hamburger-menu relative">
+		<button
+			type="button"
+			class="hamburger-icon p-2"
+			aria-label="Toggle menu"
+			aria-expanded="false"
+			aria-controls="menuLinks"
+		>
+			<span></span>
+			<span></span>
+			<span></span>
+		</button>
+		<div class="menu-links" id="menuLinks">
+			{navLinks.map((link) => <a href={link.href}>{link.label}</a>)}
+		</div>
+	</div>
+</nav>
+
+<nav
+	id="desktop-nav"
+	class="hidden xl:flex fixed top-0 left-0 right-0 z-50 bg-bg h-[17vh] items-center justify-around"
+>
+	<div class="logo text-textPrimary text-2xl">
+		<a href="/">{site.name}</a>
+	</div>
+	<div class="flex gap-8 list-none text-2xl">
+		{
+			navLinks.map((link) => (
+				<a
+					href={link.href}
+					class="text-textPrimary hover:text-white hover:underline hover:underline-offset-4 transition-all"
+				>
+					{link.label}
+				</a>
+			))
+		}
+	</div>
+</nav>
+
+<script>
+	const menu = document.getElementById('menuLinks');
+	const toggle = document.querySelector<HTMLButtonElement>('.hamburger-icon');
+	const menuWrapper = document.querySelector('#hamburger-nav .hamburger-menu');
+
+	function setOpen(open: boolean) {
+		menu?.classList.toggle('open', open);
+		toggle?.classList.toggle('open', open);
+		toggle?.setAttribute('aria-expanded', String(open));
+	}
+
+	toggle?.addEventListener('click', () => {
+		setOpen(!menu?.classList.contains('open'));
+	});
+
+	document.addEventListener('click', (event) => {
+		if (menuWrapper && !menuWrapper.contains(event.target as Node)) {
+			setOpen(false);
+		}
+	});
+</script>

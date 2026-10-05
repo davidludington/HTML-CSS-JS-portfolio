@@ -1,0 +1,379 @@
+@import "tailwindcss";
+
+/*
+ * Design tokens. These replace the `tailwind.config` object that was previously
+ * inlined in the <head> of every HTML page.
+ */
+@theme {
+	--color-bg: rgb(30 30 30);
+	--color-card: rgb(28 28 28);
+	--color-border: rgb(53 53 53);
+	--color-borderLight: rgb(163 163 163);
+	--color-textPrimary: rgb(155 155 155);
+	--color-textSecondary: rgb(85 85 85);
+
+	--font-poppins: 'Poppins', sans-serif;
+}
+
+/*
+ * These rules come from the old standalone style.css, which loaded *before* the
+ * styles the Tailwind CDN injected at runtime. Both were unlayered, so at equal
+ * specificity the Tailwind utilities won. Wrapping them in @layer components
+ * reproduces that: @layer components sorts below @layer utilities, so utilities
+ * keep winning exactly as they used to.
+ *
+ * The nav rules further down are deliberately left unlayered, because they
+ * relied on ID specificity to beat Tailwind's responsive display utilities.
+ */
+@layer components {
+	/* GENERAL */
+
+	* {
+		margin: 0;
+		padding: 0;
+		box-sizing: border-box;
+	}
+
+	html {
+		scroll-behavior: smooth;
+	}
+
+	body {
+		font-family: 'Poppins', sans-serif;
+		background-color: rgb(30 30 30);
+	}
+
+	a,
+	.btn {
+		transition: all 300ms ease;
+	}
+
+	.logo {
+		font-size: 2rem;
+		color: rgb(155 155 155);
+	}
+
+	.logo a {
+		color: inherit;
+		text-decoration: none;
+	}
+
+	.logo a:hover {
+		text-decoration: none;
+		color: rgb(155, 155, 155);
+	}
+
+	.logo:hover {
+		cursor: default;
+	}
+
+	/* HAMBURGER MENU ANIMATION */
+	.hamburger-icon {
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		height: 24px;
+		width: 30px;
+		cursor: pointer;
+	}
+
+	.hamburger-icon span {
+		width: 100%;
+		height: 2px;
+		background-color: rgb(155, 155, 155);
+		transition: all 0.3s ease-in-out;
+		transform-origin: center;
+	}
+
+	.hamburger-icon.open span:first-child {
+		transform: rotate(45deg) translate(6px, 6px);
+	}
+
+	.hamburger-icon.open span:nth-child(2) {
+		opacity: 0;
+	}
+
+	.hamburger-icon.open span:last-child {
+		transform: rotate(-45deg) translate(6px, -6px);
+	}
+
+	/* MENU LINKS - Hidden by default */
+	.menu-links {
+		position: absolute;
+		top: 100%;
+		right: 0;
+		margin-top: 0.5rem;
+		background-color: rgb(155, 155, 155);
+		min-width: 150px;
+		max-height: 0;
+		overflow: hidden;
+		transition:
+			max-height 0.3s ease-in-out,
+			padding 0.3s ease-in-out;
+		padding: 0;
+		border-radius: 0.5rem;
+	}
+
+	.menu-links.open {
+		max-height: 300px;
+		padding: 0.5rem 0;
+	}
+
+	.menu-links a {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		min-height: 48px;
+		padding: 0.75rem 1.5rem;
+		font-size: 1.1rem;
+		color: rgb(255, 255, 255);
+		text-decoration: none;
+		transition: background-color 0.2s ease;
+	}
+
+	.menu-links a:hover {
+		background-color: rgb(53, 53, 53);
+	}
+
+	.menu-links a:active {
+		background-color: rgb(30 30 30);
+	}
+
+	/* SECTIONS */
+	section {
+		padding-top: 4vh;
+		min-height: fit-content;
+	}
+
+	.section-container {
+		display: flex;
+	}
+
+	/* ICONS */
+	.icon {
+		cursor: pointer;
+		height: 2rem;
+	}
+
+	/* BUTTONS */
+	.btn-container {
+		display: flex;
+		justify-content: center;
+		gap: 1rem;
+	}
+
+	.btn {
+		font-weight: 600;
+		transition: all 300ms ease;
+		padding: 1rem;
+		width: 8rem;
+		border-radius: 2rem;
+		border: rgb(53, 53, 53) 0.1rem solid;
+		cursor: pointer;
+	}
+
+	.btn-color-1,
+	.btn-color-2:hover {
+		background: rgb(53, 53, 53);
+		color: white;
+	}
+
+	.btn-color-1:hover {
+		background: rgb(0, 0, 0);
+	}
+
+	.btn-color-2 {
+		background: none;
+		color: rgb(155, 155, 155);
+	}
+
+	.btn-color-2:hover {
+		border: rgb(255, 255, 255) 0.1rem solid;
+	}
+
+	/* CONTACT SECTION */
+	.contact-info-upper-container {
+		display: flex;
+		justify-content: center;
+		border-radius: 2rem;
+		border: rgb(53, 53, 53) 0.1rem solid;
+		border-color: rgb(163, 163, 163);
+		background: rgb(200, 200, 200);
+		margin: 2rem auto;
+		padding: 0.5rem;
+	}
+
+	.contact-info-container {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 0.5rem;
+		margin: 1rem;
+	}
+
+	.contact-info-container p {
+		/*
+		 * The original markup carried `text-base md:text-lg` alongside a
+		 * `.contact-info-container p { font-size: larger }` rule. The rule won on
+		 * specificity for font-size (19.2px), while `text-base` / `md:text-lg` still
+		 * supplied the line-heights (24px, then 28px at md+). Both values are
+		 * reproduced literally here so the utilities can be dropped from the markup.
+		 */
+		font-size: 1.2rem;
+		line-height: 1.5rem;
+	}
+
+	@media (min-width: 768px) {
+		.contact-info-container p {
+			line-height: 1.75rem;
+		}
+	}
+
+	.contact-icon {
+		cursor: default;
+	}
+
+	.email-icon {
+		height: 2.5rem;
+	}
+
+	/* FOOTER */
+	footer {
+		padding: 2rem 1rem;
+	}
+
+	footer p {
+		text-align: center;
+	}
+
+	.nav-links a {
+		color: rgb(85, 85, 85);
+		text-decoration: none;
+	}
+
+	.nav-links a:hover {
+		color: rgb(155, 155, 155);
+	}
+
+	/* LIGHTBOX */
+	.lightbox {
+		display: none;
+		position: fixed;
+		z-index: 1000;
+		left: 0;
+		top: 0;
+		width: 100%;
+		height: 100%;
+		background-color: rgba(0, 0, 0, 0.95);
+		justify-content: center;
+		align-items: center;
+		flex-direction: column;
+		animation: fadeIn 0.3s ease-in-out;
+	}
+
+	.lightbox.active {
+		display: flex;
+	}
+
+	.lightbox-img {
+		max-width: 90%;
+		max-height: 85vh;
+		object-fit: contain;
+		border-radius: 0.5rem;
+		box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+	}
+
+	.lightbox-close {
+		position: absolute;
+		top: 20px;
+		right: 30px;
+		color: rgb(155, 155, 155);
+		font-size: 40px;
+		font-weight: bold;
+		cursor: pointer;
+		transition: color 0.3s ease;
+		line-height: 1;
+	}
+
+	.lightbox-close:hover {
+		color: white;
+	}
+
+	@keyframes fadeIn {
+		from {
+			opacity: 0;
+		}
+		to {
+			opacity: 1;
+		}
+	}
+
+	/* CREATIVE GRID */
+	.fashion-item {
+		overflow: hidden;
+	}
+
+	.fashion-img {
+		transition:
+			transform 0.3s ease,
+			box-shadow 0.3s ease;
+	}
+
+	.fashion-img:hover {
+		transform: scale(1.02);
+		box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+	}
+
+	.cursor-zoom-in {
+		cursor: zoom-in;
+	}
+
+	/* RESPONSIVE ADJUSTMENTS */
+	@media (max-width: 640px) {
+		.btn {
+			width: 100%;
+			max-width: 200px;
+		}
+
+		.btn-container {
+			flex-direction: column;
+			align-items: center;
+		}
+	}
+}
+
+/*
+ * NAV
+ *
+ * Unlayered on purpose. These selectors use IDs so they outrank Tailwind's
+ * `hidden` / `xl:flex` / `xl:hidden` utilities on #desktop-nav and
+ * #hamburger-nav, which is how the original stylesheet resolved them.
+ */
+#desktop-nav {
+	display: flex;
+}
+
+#desktop-nav a {
+	color: rgb(155, 155, 155);
+	text-decoration: none;
+}
+
+#desktop-nav a:hover {
+	color: white;
+	text-decoration: underline;
+	text-underline-offset: 1rem;
+}
+
+#hamburger-nav {
+	display: none;
+}
+
+@media (max-width: 1279px) {
+	#desktop-nav {
+		display: none !important;
+	}
+
+	#hamburger-nav {
+		display: flex;
+	}
+}

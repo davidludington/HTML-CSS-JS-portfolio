@@ -1,0 +1,17 @@
+---
+type Props = {
+	src: string;
+	alt: string;
+};
+
+const { src, alt } = Astro.props;
+---
+
+<div class="fashion-item">
+	<img
+		src={src}
+		alt={alt}
+		class="fashion-img w-full aspect-square object-cover rounded-2xl border border-border cursor-zoom-in"
+		data-lightbox-src={src}
+	/>
+</div>
