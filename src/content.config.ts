@@ -1,4 +1,4 @@
-import { defineCollection } from 'astro:content';
+import { defineCollection, reference } from 'astro:content';
 import { glob } from 'astro/loaders';
 import { z } from 'astro/zod';
 
@@ -21,8 +21,17 @@ const looks = defineCollection({
 			title: z.string(),
 			description: z.string(),
 			photos: z.array(image()),
-			order: z.number().default(0),
 		}),
 });
 
-export const collections = { projects, looks };
+const albums = defineCollection({
+	loader: glob({ base: './src/content/albums', pattern: '**/*.md' }),
+	schema: z.object({
+		title: z.string(),
+		description: z.string(),
+		looks: z.array(reference('looks')),
+		order: z.number().default(0),
+	}),
+});
+
+export const collections = { projects, looks, albums };

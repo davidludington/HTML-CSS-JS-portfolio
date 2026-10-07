@@ -5,7 +5,7 @@
  * inlined in the <head> of every HTML page.
  */
 @theme {
-	--color-bg: rgb(30 30 30);
+	--color-bg: rgb(225 225 225);
 	--color-card: rgb(28 28 28);
 	--color-border: rgb(53 53 53);
 	--color-borderLight: rgb(163 163 163);

@@ -1,7 +1,6 @@
 ---
 title: 2025 pants
 description: 2025 pants — pictures and process.
-order: 1
 photos:
   - ../../assets/looks/2025-pants/IMG_6234.jpg
   - ../../assets/looks/2025-pants/IMG_6236.jpg
