@@ -1,0 +1,31 @@
+---
+import type { Skill } from '../data/skills';
+import { icon } from '../data/icons';
+import Icon from './Icon.astro';
+
+type Props = {
+	title: string;
+	skills: Skill[];
+};
+
+const { title, skills } = Astro.props;
+---
+
+<div class="details-container p-6 bg-card rounded-2xl border border-borderLight">
+	<h2 class="experience-sub-title text-xl md:text-2xl text-textSecondary font-semibold mb-6">
+		{title}
+	</h2>
+	<div class="article-container flex flex-wrap gap-4 md:gap-6 justify-start">
+		{
+			skills.map((skill) => (
+				<article class="flex items-center gap-3 min-w-[100px]">
+					<Icon image={icon(skill.icon)} alt={skill.name} class="icon w-8 h-8" />
+					<div>
+						<h3 class="text-sm text-textPrimary">{skill.name}</h3>
+						{skill.level && <p class="text-xs text-textSecondary">{skill.level}</p>}
+					</div>
+				</article>
+			))
+		}
+	</div>
+</div>

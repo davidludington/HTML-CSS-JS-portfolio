@@ -1,0 +1,17 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { site } from '../data/site';
+---
+
+<BaseLayout title={`Page not found | ${site.name}`}>
+	<section
+		class="min-h-screen flex flex-col items-center justify-center gap-6 pt-20 xl:pt-40 pb-8 px-4 text-center"
+	>
+		<p class="section__text__p1 text-textSecondary font-semibold mb-2">404</p>
+		<h1 class="title text-3xl md:text-4xl lg:text-5xl text-textPrimary mb-2">Page not found</h1>
+		<p class="text-textSecondary mb-6">That page doesn't exist.</p>
+		<a class="btn btn-color-1 px-6 py-3 min-w-[160px] flex items-center justify-center" href="/">
+			Back Home
+		</a>
+	</section>
+</BaseLayout>

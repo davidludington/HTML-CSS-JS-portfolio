@@ -1,0 +1,52 @@
+---
+import { getCollection, getEntries } from 'astro:content';
+import { Image } from 'astro:assets';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { site } from '../data/site';
+
+const albums = (await getCollection('albums')).sort((a, b) => a.data.order - b.data.order);
+
+const albumCards = await Promise.all(
+	albums.map(async (album) => {
+		const [firstLook] = await getEntries(album.data.looks);
+		return { album, cover: firstLook?.data.photos[0] };
+	})
+);
+---
+
+<BaseLayout
+	title={`Creative | ${site.name}`}
+	description="Pictures and process from my creative work."
+>
+	<section
+		id="creative"
+		class="min-h-screen flex flex-col items-center pt-20 xl:pt-40 pb-8 px-4"
+	>
+		<h1 class="title text-3xl md:text-4xl lg:text-5xl text-center mb-8">Creative Works</h1>
+    <p class="items-center pb-20">I am a creator with intrest in fabric and leather construction</p>
+		<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 max-w-7xl w-full">
+			{
+				albumCards.map(({ album, cover }) => (
+					<a href={`/creative/${album.id}`} class="group flex flex-col items-center">
+						{cover && (
+							<Image
+								src={cover}
+								alt={album.data.title}
+								width={800}
+								widths={[400, 800]}
+								sizes="(min-width: 1024px) 400px, (min-width: 640px) 50vw, 100vw"
+								quality={75}
+								loading="lazy"
+								class="fashion-img w-full aspect-square object-cover rounded-2xl border border-border"
+							/>
+						)}
+						<h2 class="title text-xl md:text-2xl text-center mt-4">{album.data.title}</h2>
+						<p class="fashion-intro text-textSecondary text-center mt-2 max-w-md">
+							{album.data.description}
+						</p>
+					</a>
+				))
+			}
+		</div>
+	</section>
+</BaseLayout>

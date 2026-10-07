@@ -1,0 +1,25 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "24.21.0"
+
+# /fashion was the old route for the creative gallery.
+[[redirects]]
+  from = "/fashion.html"
+  to = "/creative"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/work.html"
+  to = "/work"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/index.html"
+  to = "/"
+  status = 301
+  force = true

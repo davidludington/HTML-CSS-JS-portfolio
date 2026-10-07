@@ -1,0 +1,31 @@
+---
+import { contactLinks } from '../data/site';
+import { icon } from '../data/icons';
+import Icon from './Icon.astro';
+---
+
+<section
+	id="contact"
+	class="min-h-[70vh] flex flex-col justify-center items-center pt-20 xl:pt-40 px-4"
+>
+	<p class="section__text__p1 text-textSecondary text-center mb-2">Get in Touch</p>
+	<h1 class="title text-3xl md:text-4xl lg:text-5xl text-center mb-8">Contact Me</h1>
+	<div
+		class="contact-info-upper-container flex flex-col sm:flex-row gap-4 p-4 md:p-6 bg-textPrimary rounded-2xl border border-borderLight"
+	>
+		{
+			contactLinks.map((link) => (
+				<div class="contact-info-container flex items-center gap-3 p-3">
+					<Icon
+						image={icon(link.icon)}
+						alt={link.label}
+						class:list={['icon', 'contact-icon', link.iconClass, 'w-8', 'h-8', 'md:w-10', 'md:h-10']}
+					/>
+					<p class="text-bg">
+						<a href={link.href}>{link.text}</a>
+					</p>
+				</div>
+			))
+		}
+	</div>
+</section>
