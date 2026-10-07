@@ -41,6 +41,8 @@ const photos = (
 		)
 	)
 ).flat();
+
+const lightboxPhotos = photos.map((p) => ({ fullSrc: p.fullSrc, alt: p.alt }));
 ---
 
 <BaseLayout
@@ -54,11 +56,11 @@ const photos = (
 			{album.data.description}
 		</p>
 		<div class="fashion-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6 max-w-7xl w-full">
-			{photos.map((photo) => (
-				<GalleryItem image={photo.image} fullSrc={photo.fullSrc} alt={photo.alt} />
+			{photos.map((photo, i) => (
+				<GalleryItem image={photo.image} fullSrc={photo.fullSrc} alt={photo.alt} index={i} />
 			))}
 		</div>
 	</section>
 
-	<Lightbox />
+	<Lightbox photos={lightboxPhotos} />
 </BaseLayout>

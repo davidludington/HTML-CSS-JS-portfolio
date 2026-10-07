@@ -1,41 +1,74 @@
+---
+type Photo = { fullSrc: string; alt: string };
+type Props = { photos?: Photo[] };
+const { photos = [] as Photo[] } = Astro.props;
+---
 <div id="lightbox" class="lightbox">
-	<button type="button" class="lightbox-close" aria-label="Close image">&times;</button>
-	<img class="lightbox-img" id="lightbox-img" src="" alt="Full size image" />
+	<button type="button" class="lightbox-close" aria-label="Close">&times;</button>
+	<button type="button" class="lightbox-prev" aria-label="Previous">‹</button>
+	<img class="lightbox-img" id="lightbox-img" src="" alt="" />
+	<button type="button" class="lightbox-next" aria-label="Next">›</button>
 </div>
 
-<script>
+<script define:vars={{ photos }}>
 	const lightbox = document.getElementById('lightbox');
-	const lightboxImg = document.getElementById('lightbox-img') as HTMLImageElement | null;
-	const closeButton = document.querySelector<HTMLButtonElement>('.lightbox-close');
+	const lightboxImg = document.getElementById('lightbox-img');
+	const closeButton = document.querySelector('.lightbox-close');
+	const prevButton = document.querySelector('.lightbox-prev');
+	const nextButton = document.querySelector('.lightbox-next');
+	let currentIndex = 0;
 
-	function openLightbox(src: string, alt: string) {
-		if (!lightbox || !lightboxImg) return;
-		lightboxImg.src = src;
-		lightboxImg.alt = alt;
+	function show(index) {
+		if (photos.length === 0 || !lightbox || !lightboxImg) return;
+		currentIndex = ((index % photos.length) + photos.length) % photos.length;
+		lightboxImg.src = photos[currentIndex].fullSrc;
+		lightboxImg.alt = photos[currentIndex].alt;
 		lightbox.classList.add('active');
 		document.body.style.overflow = 'hidden';
 	}
 
 	function closeLightbox() {
-		lightbox?.classList.remove('active');
+		if (lightbox) lightbox.classList.remove('active');
 		document.body.style.overflow = '';
 	}
 
-	document.addEventListener('click', (event) => {
-		const target = event.target as HTMLElement;
+	document.addEventListener('click', function (event) {
+		const target = event.target;
 
-		const trigger = target.closest<HTMLElement>('[data-lightbox-src]');
+		const trigger = target.closest('[data-lightbox-src]');
 		if (trigger) {
-			openLightbox(trigger.dataset.lightboxSrc!, trigger.getAttribute('alt') ?? '');
+			const idx = Number(trigger.dataset.lightboxIndex || '0');
+			show(idx);
 			return;
 		}
 
 		if (target === lightbox || target === closeButton) {
 			closeLightbox();
+			return;
+		}
+		if (target === prevButton) {
+			show(currentIndex - 1);
+			return;
+		}
+		if (target === nextButton) {
+			show(currentIndex + 1);
+			return;
 		}
 	});
 
-	document.addEventListener('keydown', (event) => {
-		if (event.key === 'Escape') closeLightbox();
+	document.addEventListener('keydown', function (event) {
+		if (!lightbox || !lightbox.classList.contains('active')) return;
+		if (event.key === 'Escape') {
+			closeLightbox();
+			return;
+		}
+		if (event.key === 'ArrowLeft') {
+			show(currentIndex - 1);
+			return;
+		}
+		if (event.key === 'ArrowRight') {
+			show(currentIndex + 1);
+			return;
+		}
 	});
 </script>

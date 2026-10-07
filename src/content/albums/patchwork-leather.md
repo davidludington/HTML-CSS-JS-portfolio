@@ -1,10 +1,7 @@
 ---
-
 title: "Patchwork Leather Bag"
 description: Work.
-order: 1
+order: 2
 looks:
-
-- patchwork-leather
-
+  - patchwork-leather
 ---

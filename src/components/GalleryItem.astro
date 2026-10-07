@@ -7,9 +7,10 @@ type Props = {
 	/** Pre-optimized large variant the lightbox loads on demand. */
 	fullSrc: string;
 	alt: string;
+	index?: number;
 };
 
-const { image, fullSrc, alt } = Astro.props;
+const { image, fullSrc, alt, index } = Astro.props;
 ---
 
 <div class="fashion-item">
@@ -23,5 +24,6 @@ const { image, fullSrc, alt } = Astro.props;
 		loading="lazy"
 		class="fashion-img w-full aspect-square object-cover rounded-2xl border border-border cursor-zoom-in"
 		data-lightbox-src={fullSrc}
+		data-lightbox-index={index}
 	/>
 </div>

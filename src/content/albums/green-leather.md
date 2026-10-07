@@ -1,7 +1,7 @@
 ---
 title: "Green Leather Bag"
 description: Work.
-order: 1
+order: 4
 looks:
   - green-leather
 ---

@@ -1,10 +1,7 @@
 ---
-
 title: "Wood Leather Bag"
 description: Work.
-order: 1
+order: 3
 looks:
-
-- wood-leather
-
+  - wood-leather
 ---

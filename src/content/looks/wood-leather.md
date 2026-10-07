@@ -1,5 +1,5 @@
 ---
-title: green leather bag
+title: wood leather bag
 description: leather bag
 photos:
   - ../../assets/looks/leather-bags/IMG_7594.jpg
