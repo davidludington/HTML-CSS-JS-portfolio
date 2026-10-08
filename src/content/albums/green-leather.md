@@ -2,6 +2,8 @@
 title: "Green Leather Bag"
 description: Work.
 order: 4
-looks:
-  - green-leather
+photos:
+  - ../../assets/creative/green-leather/IMG_7243.jpg
+  - ../../assets/creative/green-leather/IMG_7218.jpg
+  - ../../assets/creative/green-leather/IMG_7217.jpg
 ---

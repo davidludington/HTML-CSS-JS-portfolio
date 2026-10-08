@@ -1,5 +1,5 @@
 ---
-import { getCollection, getEntries, type CollectionEntry } from 'astro:content';
+import { getCollection, type CollectionEntry } from 'astro:content';
 import { getImage } from 'astro:assets';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import GalleryItem from '../../components/GalleryItem.astro';
@@ -10,9 +10,7 @@ export async function getStaticPaths() {
 	const albums = await getCollection('albums');
 	return albums.map((album) => ({ params: { album: album.id }, props: { album } }));
 }
-
 const { album } = Astro.props as { album: CollectionEntry<'albums'> };
-const looks = await getEntries(album.data.looks);
 
 /*
  * The grid only ever shows a photo at ~302-640px wide, but the originals are
@@ -26,21 +24,15 @@ const looks = await getEntries(album.data.looks);
  */
 const THUMBNAIL_WIDTH = 1600;
 
-const photos = (
-	await Promise.all(
-		looks.map(async (look) =>
-			Promise.all(
-				look.data.photos.map(async (photo) => ({
-					image: photo,
-					alt: look.data.title,
-					fullSrc: (
-						await getImage({ src: photo, width: THUMBNAIL_WIDTH, quality: 72 })
-					).src,
-				}))
-			)
-		)
-	)
-).flat();
+const photos = await Promise.all(
+	album.data.photos.map(async (photo) => ({
+		image: photo,
+		alt: album.data.title,
+		fullSrc: (
+			await getImage({ src: photo, width: THUMBNAIL_WIDTH, quality: 72 })
+		).src,
+	}))
+);
 
 const lightboxPhotos = photos.map((p) => ({ fullSrc: p.fullSrc, alt: p.alt }));
 ---
