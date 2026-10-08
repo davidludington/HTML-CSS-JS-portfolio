@@ -52,6 +52,16 @@ const projects = (await getCollection('projects')).sort((a, b) => a.data.order -
 		</div>
 	</section>
 
+	<section id="projects" class="pt-20 xl:pt-40 px-4 md:px-8 lg:px-40">
+		<p class="section__text__p1 text-textSecondary text-center mb-2">Browse My Recent</p>
+		<h1 class="title text-3xl md:text-4xl lg:text-5xl text-center mb-8">Projects</h1>
+		<div class="experience-details-container max-w-5xl mx-auto">
+			<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+				{projects.map((project) => <ProjectCard project={project} />)}
+			</div>
+		</div>
+	</section>
+
 	<section id="experience" class="pt-20 xl:pt-40 px-4 md:px-8 lg:px-40">
 		<p class="section__text__p1 text-textSecondary text-center mb-2">Explore My</p>
 		<h1 class="title text-3xl md:text-4xl lg:text-5xl text-center mb-8">Experience</h1>
@@ -59,16 +69,6 @@ const projects = (await getCollection('projects')).sort((a, b) => a.data.order -
 			<div class="grid md:grid-cols-2 gap-6 md:gap-8">
 				<SkillGrid title="Frameworks" skills={frameworks} />
 				<SkillGrid title="Languages" skills={languages} />
-			</div>
-		</div>
-	</section>
-
-	<section id="projects" class="pt-20 xl:pt-40 px-4 md:px-8 lg:px-40">
-		<p class="section__text__p1 text-textSecondary text-center mb-2">Browse My Recent</p>
-		<h1 class="title text-3xl md:text-4xl lg:text-5xl text-center mb-8">Projects</h1>
-		<div class="experience-details-container max-w-5xl mx-auto">
-			<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-				{projects.map((project) => <ProjectCard project={project} />)}
 			</div>
 		</div>
 	</section>
