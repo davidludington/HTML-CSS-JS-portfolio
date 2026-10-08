@@ -2,7 +2,7 @@ export const site = {
 	name: 'David Ludington',
 	role: 'Quality Assurance Engineer',
 	email: 'diludington@gmail.com',
-	resumeUrl: '/David_Ludington_resume.pdf',
+	resumeUrl: '/David_Ludington.pdf',
 	description:
 		'Quality Assurance Engineer at Encyclopedia Britannica. Browse my projects, skills, and creative work.',
 } as const;
