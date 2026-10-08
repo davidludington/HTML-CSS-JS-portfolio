@@ -23,7 +23,11 @@ const albumCards = await Promise.all(
 		class="min-h-screen flex flex-col items-center pt-20 xl:pt-40 pb-8 px-4"
 	>
 		<h1 class="title text-3xl md:text-4xl lg:text-5xl text-center mb-8">Creative Works</h1>
-    <p class="items-center pb-20">I am a creator with intrest in fabric and leather construction</p>
+    <div class="prose max-w-5xl mx-auto pb-20">
+      <p>I'm a leatherworker and maker based in New York City, with a background in computer science.</p>
+      <p>I'm drawn to making because I enjoy understanding how things work and figuring out how to make them well. My interests center around leatherwork, garment construction, and working with materials like leather, denim, and canvas. I'm especially interested in the construction itself—the way materials behave, how pieces come together, and the techniques, tools, and decisions that go into creating something functional and durable.</p>
+      <p>For me, making is as much about the process as the finished object. I enjoy learning new techniques, experimenting with different materials, and working through the small problems that come with trying to build something by hand. There's something satisfying about developing an understanding of a material through experience and gradually becoming more precise and intentional in how I work.</p>
+    </div>
 		<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 max-w-7xl w-full">
 			{
 				albumCards.map(({ album, cover }) => (
